@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "lodash": "^3.1.0",
-    "mousetrap": "^1.5.2"
+    "mousetrap": "^1.5.2",
+    "react-valid-props": "^1.0.1"
   },
   "peerDependencies": {
     "react": ">= 0.14.0",
@@ -35,7 +36,8 @@
     "lint": "eslint .",
     "test": "mocha --compilers js:babel/register lib/**/__tests__/*.js",
     "build-global": "bash ./scripts/build-global",
-    "build-npm": "bash ./scripts/build-npm"
+    "build-npm": "bash ./scripts/build-npm",
+    "build-npm-watch": "bash ./scripts/build-npm watch"
   },
   "author": "Chris Pearce <hello@chrispearce.me> (chrispearce.co)",
   "license": "MIT",

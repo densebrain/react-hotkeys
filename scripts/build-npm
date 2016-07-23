@@ -1,8 +1,30 @@
 #!/bin/bash -e
 
-rm -rf build/npm
-babel -d build/npm/lib ./lib
-cp README.md build/npm/
+#if [ "$1" == "watch" ]; then
+#  echo "Starting watch"
+#  babel --watch -d build/npm/lib ./lib
+#fi
+
+BABEL_ARGS=$([[ "$1" == "watch" ]] && echo "--watch")
+echo "Babel Args = ${BABEL_ARGS}"
+echo "Cleaning"
+rm -rf build/npm/*
+mkdir -p build/npm
+
+echo "Copying Resources"
+
+node -p "p=require(\"./package.json\");p.main=\"lib\";p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)" \
+  > build/npm/package.json
+
 cp index.d.ts build/npm/
-find -X build/npm/lib -type d -name __tests__ | xargs rm -rf
-node -p "p=require(\"./package.json\");p.main=\"lib\";p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)" > build/npm/package.json
+cp README.md build/npm/
+
+echo "Starting compile & watch"
+babel ${BABEL_ARGS} -d build/npm/lib --ignore "__tests__,*-test.js" ./lib
+#find -X build/npm/lib -type d -name __tests__ | xargs rm -rf
+
+
+
+
+
+

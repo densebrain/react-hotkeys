@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactValidProps = require("react-valid-props");
+
+var _reactValidProps2 = _interopRequireDefault(_reactValidProps);
+
 var FocusTrap = _react2['default'].createClass({
   displayName: 'FocusTrap',
 
@@ -33,7 +37,7 @@ var FocusTrap = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       Component,
-      _extends({ tabIndex: '-1' }, this.props),
+      _extends({ tabIndex: '-1' }, (0, _reactValidProps2['default'])(this.props)),
       this.props.children
     );
   }
